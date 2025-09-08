@@ -17,11 +17,8 @@ FetchContent_MakeAvailable(googletest)
 
 enable_testing()
 
-file(GLOB SOURCES "*.c" "*.cpp")
-add_executable(
-  stats_test
-  ${SOURCES}
-)
+file(GLOB SOURCES "*.c" "*.cpp" "test/*.c" "test/*.cpp")
+
 target_link_libraries(
   stats_test
   GTest::gtest_main
