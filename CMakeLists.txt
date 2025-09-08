@@ -17,15 +17,20 @@ FetchContent_MakeAvailable(googletest)
 
 enable_testing()
 
-file(GLOB SOURCES "*.c" "*.cpp")
-add_executable(
-  stats_test
-  ${SOURCES}
-)
+# Collect source files
+file(GLOB SOURCES "src/*.c" "src/*.cpp")
+file(GLOB TEST_SOURCES "test/*.c" "test/*.cpp")
+
+# Create the test executable
+add_executable(stats_test ${SOURCES} ${TEST_SOURCES})
+
 target_link_libraries(
   stats_test
   GTest::gtest_main
 )
+
+# Include directories
+target_include_directories(stats_test PRIVATE src)
 
 include(GoogleTest)
 gtest_discover_tests(stats_test)
