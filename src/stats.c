@@ -80,8 +80,10 @@ struct Stats compute_statistics(const float* numbers, int count) {
         sum += numbers[i];
     }
 
-    // Compute average only if we have valid values
-    if (validValuesCount > 0) {
+    // If no valid values were found, set all statistics to NaN
+    if (validValuesCount == 0) {
+        setStatisticsToNaN(&stats);
+    } else {
         stats.average = sum / validValuesCount;
     }
     
